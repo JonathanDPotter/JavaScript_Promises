@@ -15,6 +15,19 @@ function getList() {
   });
 }
 
+const errorDisplay = document.getElementById("error");
+const listDisplay = document.getElementById("list");
+
+getList()
+  .then((list) => {
+    list.forEach((listItem) =>
+      listDisplay.appendChild(
+        Object.assign(document.createElement("li"), { textContent: listItem })
+      )
+    );
+  })
+  .catch((error) => (errorDisplay.textContent = error.message));
+
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
